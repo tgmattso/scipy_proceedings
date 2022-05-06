@@ -1,5 +1,5 @@
 :author: Padmanabhan Pillai
-:email: jpadmanabhan.s.pillai@intel.com
+:email: padmanabhan.s.pillai@intel.com
 :institution:Parallel Computing Lab
 :institution: Intel Corp.
 
@@ -14,9 +14,6 @@
 :institution: Intel Corp.
 
 :bibliography: mybib
-
-
-
 
 ------------------------------------------------
 Ramba: Parallel distributed execution of NumPy code
@@ -89,6 +86,14 @@ Nums (alternative Python-based distributed array frameworks).  Ramba achieves
 that is essentially unmodified from the NumPy baseline.  
 See https://github.com/Python-for-HPC/ramba#performance-comparisons for more details.   
 
+With code-highlighting:
+
+.. code-block:: python
+
+   def sum(a, b):
+       """Sum two numbers."""
+
+       return a + b
 
 
 Bibliographies, citations and block quotes
