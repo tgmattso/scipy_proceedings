@@ -170,10 +170,12 @@ With code-highlighting:
 
 .. code-block:: python
 
-   def sum(a, b):
-       """Sum two numbers."""
-
-       return a + b
+    # sz = 30000
+    B[2:sz-2, 2:sz-2] += w0*A[0:sz-4, 2:sz-2] + w1*A[1:sz-3, 2:sz-2] + 
+           w2*A[2:sz-2, 0:sz-4] + w3*A[2:sz-2, 1:sz-3] + w4*A[2:sz-2, 2:sz-2] + 
+           w5*A[2:sz-2, 3:sz-1] + w6*A[2:sz-2, 4:sz] + w7*A[3:sz-1, 2:sz-2] + 
+           w8*A[4:sz, 2:sz-2]
+    A += 1.0
 
 Maybe also in another language, and with line numbers:
 
