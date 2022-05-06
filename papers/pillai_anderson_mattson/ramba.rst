@@ -19,7 +19,7 @@
 
 
 ------------------------------------------------
-A Numerical Perspective to Terraforming a Desert
+Ramba: Parallel distributed execution of NumPy code
 ------------------------------------------------
 
 .. class:: abstract
@@ -34,32 +34,42 @@ It still needs some work, but it?s ready for people to use and, more importantly
 
 .. class:: keywords
 
-   terraforming, desert, numerical perspective
+   parallel distributed numpy  
 
 Introduction
 ------------
 
-Hardware is parallel. Most programmers, however, write serial code. We can train programmers to write parallel code.  It would be easier, though, if systems extracted parallelism from code on behalf of programmers.   Automatic parallelism in general is unlikely to work any time soon.  However, when the elements of an algorithm are ?naturally concurrent?, that concurrency can be exploited to generate parallel executions. The classic example of natural concurrency is array-based operations given that they are fundamentally data-parallel.
+Hardware is parallel. Most programmers, however, write serial code. We can train programmers to 
+write parallel code.  It would be easier, though, if systems extracted parallelism from code on behalf 
+of programmers.   Automatic parallelism in general is unlikely to work any time soon.  However, 
+when the elements of an algorithm are ?naturally concurrent?, that concurrency can be exploited 
+to generate parallel executions. The classic example of natural concurrency is array-based 
+operations given that they are fundamentally data-parallel.
 
-Programmers comfortable with explicit parallelism are well supported by existing tools such as mpi4py, Ray, PyOMP or Dask.  The overwhelming majority of programmers, however, are focused on their scientific domains and do not have the time (or interest) to master parallel programming.  These are the people for whom Ramba was created.  In this presentation, we discuss our system to extract parallelism from programs expressed in terms of NumPy arrays.  In contrast to other distributed array systems with similar goals (e.g., Dask Array, Nums), we deliver significantly higher performance by leveraging the Numba JIT compiler. We often achieve results approaching that from well-crafted C/MPI code.  
+Programmers comfortable with explicit parallelism are well supported by existing tools such 
+as mpi4py, Ray, PyOMP or Dask.  The overwhelming majority of programmers, however, 
+are focused on their scientific domains and do not have the time (or interest) to master 
+parallel programming.  These are the people for whom Ramba was created.  In this presentation, 
+we discuss our system to extract parallelism from programs expressed in terms of NumPy arrays.  
+In contrast to other distributed array systems with similar goals (e.g., Dask Array, Nums), we 
+deliver significantly higher performance by leveraging the Numba JIT compiler. We often 
+achieve results approaching that from well-crafted C/MPI code.  
 
-Our distributed array package is called Ramba.  It is available at http://github.com/Python-for-HPC/ramba.  Ramba automatically partitions arrays across the nodes of a distributed system.  It takes a sequence of array operations, aggregates them, and then applies operator fusion, reordering and other transformations to construct a JIT-compiled parallel function. We then execute across a distributed dataset at speeds on par with compiled C code.  Ramba exploits data locality to minimize communication and maximize utilization of parallel resources.  
+Our distributed array package is called Ramba.  It is available at http://github.com/Python-for-HPC/ramba.  
+Ramba automatically partitions arrays across the nodes of a distributed system.  It takes a sequence of 
+array operations, aggregates them, and then applies operator fusion, reordering and other transformations 
+to construct a JIT-compiled parallel function. We then execute across a distributed dataset at speeds on par 
+with compiled C code.  Ramba exploits data locality to minimize communication and maximize utilization of parallel resources.  
 
-Ramba is a drop-in replacement for NumPy.  It supports most array creation and initialization routines, arithmetic operations, most simple indexing/slicing operations, and the ufunc API.  Fancy indexing, many matrix manipulation functions, and library subpackages (linalg, FFT, etc.) have not yet been implemented.  See https://github.com/Python-for-HPC/ramba#numpy-compatibility for more details.  
+Ramba is a drop-in replacement for NumPy.  It supports most array creation and initialization routines, arithmetic 
+operations, most simple indexing/slicing operations, and the ufunc API.  Fancy indexing, many matrix manipulation 
+functions, and library subpackages (linalg, FFT, etc.) have not yet been implemented.  See 
+https://github.com/Python-for-HPC/ramba#numpy-compatibility for more details.  
 
-We evaluated Ramba?s performance using benchmarks from the Parallel Research Kernels (PRK)  (https://github.com/IntelLabs/Kernels/tree/RayPython) and DPbench (https://github.com/IntelPython/dpbench/tree/feature/dist/distributed). Our preliminary experiments use the Stencil benchmark from PRK for a 30000x30000 array and a stencil of radius 2.  The Numpy and Ramba implementations execute the following code in a timed loop:
-
-
-
-
-
-
-
-
-
-
-
-
+We evaluated Ramba?s performance using benchmarks from the Parallel Research Kernels (PRK)  
+(https://github.com/IntelLabs/Kernels/tree/RayPython) and DPbench (https://github.com/IntelPython/dpbench/tree/feature/dist/distributed). 
+Our preliminary experiments use the Stencil benchmark from PRK for a 30000x30000 array and a stencil of radius 2.  
+The Numpy and Ramba implementations execute the following code in a timed loop:
 
 .. code-block:: python
    :linenos:
@@ -71,7 +81,13 @@ We evaluated Ramba?s performance using benchmarks from the Parallel Research Ker
            w8*A[4:sz, 2:sz-2]
     A += 1.0
 
-Ramba achieves 110 times the throughput of baseline NumPy code on a single node, and 380 times Numpy throughput on 4 nodes.  It is tens of times faster than Dask and Nums (alternative Python-based distributed array frameworks).  Ramba achieves 85% of the throughput of a C/MPI implementation of the benchmarks with code that is essentially unmodified from the NumPy baseline.  See https://github.com/Python-for-HPC/ramba#performance-comparisons for more details.   
+
+Ramba achieves 110 times the throughput of baseline NumPy code on a single node, 
+and 380 times Numpy throughput on 4 nodes.  It is tens of times faster than Dask and 
+Nums (alternative Python-based distributed array frameworks).  Ramba achieves 
+85% of the throughput of a C/MPI implementation of the benchmarks with code 
+that is essentially unmodified from the NumPy baseline.  
+See https://github.com/Python-for-HPC/ramba#performance-comparisons for more details.   
 
 
 
