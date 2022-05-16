@@ -1,16 +1,19 @@
 :author: Padmanabhan Pillai
 :email: padmanabhan.s.pillai@intel.com
-:institution:Parallel Computing Lab, Intel Corp.
+:institution: Intel Corp.
+:equal-contributor:
 
 :author: Todd Anderson
 :email: todd.a.anderson@intel.com
-:institution:Parallel Computing Lab, Intel Corp.
+:institution: Intel Corp.
+:equal-contributor:
 
-:author: Timothy G. Mattson
+:author: Tim Mattson
 :email: timothy.g.mattson@intel.com
-:institution:Parallel Computing Lab, Intel Corp.
+:institution: Intel Corp.
+:corresponding:
 
-:bibliography: mybib
+:bibliography: ramb
 
 ------------------------------------------------
 Ramba: Parallel distributed execution of NumPy code
