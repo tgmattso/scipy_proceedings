@@ -1,17 +1,14 @@
 :author: Padmanabhan Pillai
 :email: padmanabhan.s.pillai@intel.com
-:institution:Parallel Computing Lab
-:institution: Intel Corp.
+:institution:Parallel Computing Lab, Intel Corp.
 
 :author: Todd Anderson
 :email: todd.a.anderson@intel.com
-:institution:Parallel Computing Lab
-:institution: Intel Corp.
+:institution:Parallel Computing Lab, Intel Corp.
 
 :author: Timothy G. Mattson
 :email: timothy.g.mattson@intel.com
-:institution:Parallel Computing Lab
-:institution: Intel Corp.
+:institution:Parallel Computing Lab, Intel Corp.
 
 :bibliography: mybib
 
@@ -24,9 +21,9 @@ Ramba: Parallel distributed execution of NumPy code
 Our quest is to deliver C-like performance for Python applications across a cluster of machines.  
 We do this by mapping NumPy arrays onto a distributed system while leveraging the Numba 
 JIT compiler. We call this package Ramba.  In this talk we describe how Ramba takes a 
-programmer?s NumPy code and generates a distributed execution that would make a 
-C programmer proud.  Today, Ramba is a stable ?proof of concept? system.  
-It still needs some work, but it?s ready for people to use and, more importantly, to
+programmer's NumPy code and generates a distributed execution that would make a 
+C programmer proud.  Today, Ramba is a stable "proof of concept" system.  
+It still needs some work, but it's ready for people to use and, more importantly, to
  join with us to help it grow into a production-ready tool.  
 
 .. class:: keywords
@@ -39,14 +36,14 @@ Introduction
 Hardware is parallel. Most programmers, however, write serial code. We can train programmers to 
 write parallel code.  It would be easier, though, if systems extracted parallelism from code on behalf 
 of programmers.   Automatic parallelism in general is unlikely to work any time soon.  However, 
-when the elements of an algorithm are ?naturally concurrent?, that concurrency can be exploited 
+when the elements of an algorithm are "naturally concurrent", that concurrency can be exploited 
 to generate parallel executions. The classic example of natural concurrency is array-based 
 operations given that they are fundamentally data-parallel.
 
 Programmers comfortable with explicit parallelism are well supported by existing tools such 
 as mpi4py, Ray, PyOMP or Dask.  The overwhelming majority of programmers, however, 
-are focused on their scientific domains and do not have the time (or interest) to master 
-parallel programming.  These are the people for whom Ramba was created.  In this presentation, 
+are focused on their problem domains and do not have the time (or interest) to master 
+parallel programming.  These are the people for whom Ramba was created.  In this paper, 
 we discuss our system to extract parallelism from programs expressed in terms of NumPy arrays.  
 In contrast to other distributed array systems with similar goals (e.g., Dask Array, Nums), we 
 deliver significantly higher performance by leveraging the Numba JIT compiler. We often 
@@ -339,18 +336,6 @@ Perhaps we want to end off with a quote by Lao Tse [#]_:
 
 .. [#] :math:`\mathrm{e^{-i\pi}}`
 
-.. Customised LaTeX packages
-.. -------------------------
-
-.. Please avoid using this feature, unless agreed upon with the
-.. proceedings editors.
-
-.. ::
-
-..   .. latex::
-..      :usepackage: somepackage
-
-..      Some custom LaTeX source here.
 
 References
 ----------
